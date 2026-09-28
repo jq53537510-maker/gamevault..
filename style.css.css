@@ -1,0 +1,255 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #050505;
+    color: white;
+}
+
+
+/* ENCABEZADO */
+
+header {
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 8%;
+    border-bottom: 2px solid #087cff;
+}
+
+header img {
+    width: 180px;
+    height: 80px;
+    object-fit: contain;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #087cff;
+}
+
+
+/* INICIO */
+
+.inicio {
+    min-height: 500px;
+    text-align: center;
+    padding-top: 150px;
+    background: linear-gradient(#000000cc, #00152dcc);
+}
+
+.inicio h1 {
+    font-size: 65px;
+}
+
+.inicio h1 span {
+    color: #087cff;
+}
+
+.inicio p {
+    color: #40a9ff;
+    letter-spacing: 5px;
+    margin: 15px;
+}
+
+.inicio h2 {
+    margin: 25px;
+}
+
+.boton {
+    background: #087cff;
+    color: white;
+    padding: 14px 25px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+
+/* TITULOS */
+
+.titulo {
+    text-align: center;
+    color: #1688ff;
+    font-size: 32px;
+    margin-bottom: 40px;
+}
+
+
+/* JUEGOS */
+
+.juegos {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.tarjeta {
+    background: #111;
+    width: 250px;
+    padding: 15px;
+    text-align: center;
+    border: 1px solid #176fc7;
+    border-radius: 10px;
+}
+
+.tarjeta:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 15px #087cff;
+}
+
+.tarjeta img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 7px;
+}
+
+.tarjeta h3 {
+    margin: 15px 0 8px;
+}
+
+.tarjeta p {
+    color: #aaa;
+}
+
+.tarjeta h4 {
+    color: #1688ff;
+    font-size: 22px;
+    margin: 15px;
+}
+
+button {
+    background: #087cff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background: #005dcc;
+}
+
+
+/* RECARGAS */
+
+.recargas {
+    background: #080f17;
+    text-align: center;
+}
+
+.texto {
+    color: #bbb;
+    margin-bottom: 30px;
+}
+
+.formulario {
+    background: #111;
+    width: 400px;
+    max-width: 90%;
+    margin: auto;
+    padding: 30px;
+    border: 1px solid #087cff;
+    border-radius: 10px;
+}
+
+.formulario label {
+    display: block;
+    text-align: left;
+    margin-top: 15px;
+    margin-bottom: 7px;
+}
+
+.formulario input,
+.formulario select {
+    width: 100%;
+    padding: 12px;
+    background: #222;
+    color: white;
+    border: 1px solid #555;
+    border-radius: 5px;
+}
+
+.formulario button {
+    width: 100%;
+    margin-top: 25px;
+}
+
+#mensaje {
+    margin-top: 20px;
+    color: #1688ff;
+    font-weight: bold;
+}
+
+
+/* EMPRESA */
+
+.empresa {
+    background: #050505;
+}
+
+.informacion {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.informacion div {
+    width: 300px;
+    padding: 25px;
+    background: #101820;
+    border-left: 4px solid #087cff;
+}
+
+.informacion h2 {
+    color: #1688ff;
+    margin-bottom: 15px;
+}
+
+.informacion p {
+    color: #ccc;
+    line-height: 1.6;
+}
+
+
+/* CONTACTO */
+
+.contacto {
+    text-align: center;
+}
+
+.contacto h2 {
+    color: #087cff;
+    font-size: 35px;
+    margin-bottom: 15px;
+}
+
+.contacto p {
+    color: #ccc;
+    margin: 8px;
+}
+
+
+/* PIE */
+
+footer {
+    background: #000;
+    text-align: center;
+    padding: 20px;
+    color: #777;
+}
