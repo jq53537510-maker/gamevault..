@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GameVault | Game Keys, Software & Recargas</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css.css">
     <!-- FontAwesome para iconos profesionales -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -29,12 +29,32 @@
                 <a href="#recargas"><i class="fa-solid fa-bolt"></i> Recargas</a>
                 <a href="#empresa"><i class="fa-solid fa-users"></i> Nosotros</a>
                 <a href="#contacto"><i class="fa-solid fa-headset"></i> Contacto</a>
+                
+                <!-- BOTÓN DEL CARRITO EN EL HEADER -->
+                <button class="btn-carrito-header" onclick="toggleCarrito()">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span id="contadorCarrito">0</span>
+                </button>
             </nav>
         </div>
     </header>
 
-    <!-- PORTADA / HERO (CON LOGO COMPACTO Y LLAMATIVO) -->
+    <!-- PORTADA / HERO (CON VIDEO DE FONDO, LOGO Y BOTÓN DE AUDIO) -->
     <section id="inicio" class="inicio">
+        <!-- Botón para activar/desactivar audio del video -->
+        <button id="btnAudio" class="btn-audio-hero" onclick="toggleAudioVideo()">
+            <i id="iconoAudio" class="fa-solid fa-volume-xmark"></i> Activar Sonido
+        </button>
+
+        <div class="hero-video-background">
+            <video id="videoHero" autoplay muted loop playsinline>
+                <!-- Reemplaza "tu-video.mp4" con el nombre o enlace de tu video -->
+                <source src="WhatsApp Video 2026-11-15 at 4.02.47 PM.mp4" type="video/mp4">
+                Tu navegador no soporta videos HTML5.
+            </video>
+            <div class="hero-overlay"></div>
+        </div>
+
         <div class="hero-content">
             <div class="logo-hero-container">
                 <img src="1000150296.jpeg" alt="GameVault Logo Grande" class="logo-hero">
@@ -56,7 +76,7 @@
     <section id="juegos" class="seccion-juegos">
         <div class="section-header">
             <h2 class="titulo"><i class="fa-solid fa-gamepad"></i> Videojuegos Destacados</h2>
-            <p class="subtitulo">Visualiza los tráilers oficiales y adquiere tus títulos favoritos al instante.</p>
+            <p class="subtitulo">Visualiza los tráilers oficiales y agrega tus títulos favoritos al carrito.</p>
         </div>
 
         <!-- FILTROS POR CATEGORÍA -->
@@ -86,7 +106,9 @@
                 </div>
                 <div class="tarjeta-footer">
                     <div class="precio">420 <span>Bs.</span></div>
-                    <button class="btn-comprar" onclick="comprarItem('Grand Theft Auto VI', '420 Bs.')"><i class="fa-solid fa-cart-shopping"></i> Comprar</button>
+                    <button class="btn-comprar" onclick="agregarAlCarrito('Grand Theft Auto VI', 420, 'img/gta6.jfif')">
+                        <i class="fa-solid fa-cart-plus"></i> Agregar
+                    </button>
                 </div>
             </div>
 
@@ -106,7 +128,9 @@
                 </div>
                 <div class="tarjeta-footer">
                     <div class="precio">300 <span>Bs.</span></div>
-                    <button class="btn-comprar" onclick="comprarItem('God of War', '300 Bs.')"><i class="fa-solid fa-cart-shopping"></i> Comprar</button>
+                    <button class="btn-comprar" onclick="agregarAlCarrito('God of War', 300, 'img/p3pYq0QxntZQREXRVdAzmn1w.avif')">
+                        <i class="fa-solid fa-cart-plus"></i> Agregar
+                    </button>
                 </div>
             </div>
 
@@ -126,7 +150,9 @@
                 </div>
                 <div class="tarjeta-footer">
                     <div class="precio">400 <span>Bs.</span></div>
-                    <button class="btn-comprar" onclick="comprarItem('God of War Ragnarök', '400 Bs.')"><i class="fa-solid fa-cart-shopping"></i> Comprar</button>
+                    <button class="btn-comprar" onclick="agregarAlCarrito('God of War Ragnarök', 400, 'img/ragnarok.jfif')">
+                        <i class="fa-solid fa-cart-plus"></i> Agregar
+                    </button>
                 </div>
             </div>
 
@@ -145,7 +171,9 @@
                 </div>
                 <div class="tarjeta-footer">
                     <div class="precio">300 <span>Bs.</span></div>
-                    <button class="btn-comprar" onclick="comprarItem('The Last of Us Part II', '300 Bs.')"><i class="fa-solid fa-cart-shopping"></i> Comprar</button>
+                    <button class="btn-comprar" onclick="agregarAlCarrito('The Last of Us Part II', 300, 'img/TLOU_P2_Box_Art_2.png')">
+                        <i class="fa-solid fa-cart-plus"></i> Agregar
+                    </button>
                 </div>
             </div>
 
@@ -164,7 +192,9 @@
                 </div>
                 <div class="tarjeta-footer">
                     <div class="precio">240 <span>Bs.</span></div>
-                    <button class="btn-comprar" onclick="comprarItem('Uncharted 4', '240 Bs.')"><i class="fa-solid fa-cart-shopping"></i> Comprar</button>
+                    <button class="btn-comprar" onclick="agregarAlCarrito('Uncharted 4: El desenlace', 240, 'img/uncharted.jfif')">
+                        <i class="fa-solid fa-cart-plus"></i> Agregar
+                    </button>
                 </div>
             </div>
 
@@ -183,7 +213,9 @@
                 </div>
                 <div class="tarjeta-footer">
                     <div class="precio">250 <span>Bs.</span></div>
-                    <button class="btn-comprar" onclick="comprarItem('Call of Duty: Black Ops 3', '250 Bs.')"><i class="fa-solid fa-cart-shopping"></i> Comprar</button>
+                    <button class="btn-comprar" onclick="agregarAlCarrito('Call of Duty: Black Ops III', 250, 'img/call of duty.jfif')">
+                        <i class="fa-solid fa-cart-plus"></i> Agregar
+                    </button>
                 </div>
             </div>
 
@@ -202,7 +234,9 @@
                 </div>
                 <div class="tarjeta-footer">
                     <div class="precio">250 <span>Bs.</span></div>
-                    <button class="btn-comprar" onclick="comprarItem('Cyberpunk 2077', '250 Bs.')"><i class="fa-solid fa-cart-shopping"></i> Comprar</button>
+                    <button class="btn-comprar" onclick="agregarAlCarrito('Cyberpunk 2077', 250, 'img/Cyberpunk-2077-PC-COVER.webp')">
+                        <i class="fa-solid fa-cart-plus"></i> Agregar
+                    </button>
                 </div>
             </div>
 
@@ -222,7 +256,9 @@
                 </div>
                 <div class="tarjeta-footer">
                     <div class="precio">300 <span>Bs.</span></div>
-                    <button class="btn-comprar" onclick="comprarItem('Tekken 8', '300 Bs.')"><i class="fa-solid fa-cart-shopping"></i> Comprar</button>
+                    <button class="btn-comprar" onclick="agregarAlCarrito('Tekken 8', 300, 'img/teken.avif')">
+                        <i class="fa-solid fa-cart-plus"></i> Agregar
+                    </button>
                 </div>
             </div>
 
@@ -335,15 +371,35 @@
         <p>© 2026 GameVault - Todos los derechos reservados.</p>
     </footer>
 
-    <!-- MODAL DE COMPRA -->
-    <div id="modalCompra" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="cerrarModal()">&times;</span>
-            <i class="fa-solid fa-bag-shopping modal-icon"></i>
-            <h3>Confirmar Pedido</h3>
-            <p id="detalleCompraTexto">Estás a punto de adquirir: ...</p>
-            <button class="btn-confirmar" id="btnWhatsappModal" onclick="finalizarCompra()"><i class="fa-brands fa-whatsapp"></i> Confirmar pedido por WhatsApp</button>
+    <!-- PANEL LATERAL DEL CARRITO DE COMPRAS -->
+    <div id="carritoOverlay" class="carrito-overlay" onclick="toggleCarrito()"></div>
+    <aside id="panelCarrito" class="panel-carrito">
+        <div class="carrito-header">
+            <h3><i class="fa-solid fa-cart-shopping"></i> Tu Carrito</h3>
+            <button class="btn-cerrar-carrito" onclick="toggleCarrito()">&times;</button>
         </div>
+
+        <div id="listaCarrito" class="carrito-items">
+            <p class="carrito-vacio">Tu carrito está vacío.</p>
+        </div>
+
+        <div class="carrito-footer">
+            <div class="carrito-total">
+                <span>Total a pagar:</span>
+                <strong id="totalCarrito">0 Bs.</strong>
+            </div>
+            <button class="btn-vaciar" onclick="vaciarCarrito()">
+                <i class="fa-solid fa-trash"></i> Vaciar Carrito
+            </button>
+            <button class="btn-finalizar-carrito" onclick="finalizarCompraCarrito()">
+                <i class="fa-brands fa-whatsapp"></i> Comprar Todo por WhatsApp
+            </button>
+        </div>
+    </aside>
+
+    <!-- NOTIFICACIÓN TOAST AL AGREGAR -->
+    <div id="toastNotificacion" class="toast">
+        <i class="fa-solid fa-circle-check"></i> <span id="toastTexto">Agregado al carrito</span>
     </div>
 
     <script src="script.js"></script>
