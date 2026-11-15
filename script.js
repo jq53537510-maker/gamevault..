@@ -1,8 +1,8 @@
-// Número de teléfono de contacto (Pon el tuyo con código de país, ej: 59170000000)
-const TELEFONO_WHATSAPP = "59177549133"; 
+// Número de teléfono de contacto con código de país
+const TELEFONO_WHATSAPP = "59177549133";
 
-let juegoSeleccionado = "";
-let precioSeleccionado = "";
+// Arreglo del carrito de compras
+let carrito = [];
 
 function toggleDescripcion(boton) {
     const descripcion = boton.previousElementSibling;
@@ -37,7 +37,6 @@ function filtrarJuegos() {
 
 // Filtro por plataforma (PlayStation, Xbox, PC)
 function filtrarPlataforma(categoria, boton) {
-    // Cambiar botón activo
     document.querySelectorAll('.btn-filtro').forEach(btn => btn.classList.remove('active'));
     boton.classList.add('active');
 
@@ -53,28 +52,150 @@ function filtrarPlataforma(categoria, boton) {
     });
 }
 
-// Abrir Modal de Compra de Juego
-function comprarItem(juego, precio) {
-    juegoSeleccionado = juego;
-    precioSeleccionado = precio;
+/* ==========================================
+   FUNCIÓN PARA ACTIVAR / DESACTIVAR AUDIO
+========================================== */
+function toggleAudioVideo() {
+    const video = document.getElementById('videoHero');
+    const btnAudio = document.getElementById('btnAudio');
 
-    const modal = document.getElementById('modalCompra');
-    const texto = document.getElementById('detalleCompraTexto');
-    texto.textContent = `Estás a punto de adquirir "${juego}" por un valor de ${precio}.`;
-    modal.style.display = 'flex';
+    if (video.muted) {
+        video.muted = false;
+        video.play();
+        btnAudio.innerHTML = '<i class="fa-solid fa-volume-high"></i> Silenciar';
+    } else {
+        video.muted = true;
+        btnAudio.innerHTML = '<i class="fa-solid fa-volume-xmark"></i> Activar Sonido';
+    }
 }
 
-function cerrarModal() {
-    const modal = document.getElementById('modalCompra');
-    modal.style.display = 'none';
+/* ==========================================
+   FUNCIONES DEL CARRITO DE COMPRAS
+========================================== */
+
+// Abrir o cerrar el panel lateral del carrito
+function toggleCarrito() {
+    document.getElementById('panelCarrito').classList.toggle('abierto');
+    document.getElementById('carritoOverlay').classList.toggle('activo');
 }
 
-// Redirigir a WhatsApp para compra de Juego
-function finalizarCompra() {
-    const mensaje = `Hola GameVault! 👋 Quisiera comprar el juego *${juegoSeleccionado}* con el precio de *${precioSeleccionado}*. ¿Cuáles son las formas de pago?`;
+// Agregar un producto al carrito
+function agregarAlCarrito(nombre, precio, imagen) {
+    const itemExistente = carrito.find(item => item.nombre === nombre);
+
+    if (itemExistente) {
+        itemExistente.cantidad++;
+    } else {
+        carrito.push({
+            nombre: nombre,
+            precio: precio,
+            imagen: imagen,
+            cantidad: 1
+        });
+    }
+
+    actualizarCarritoUI();
+    mostrarNotificacion(`"${nombre}" agregado al carrito`);
+}
+
+// Aumentar o disminuir cantidad
+function cambiarCantidad(index, cambio) {
+    carrito[index].cantidad += cambio;
+
+    if (carrito[index].cantidad <= 0) {
+        carrito.splice(index, 1);
+    }
+
+    actualizarCarritoUI();
+}
+
+// Eliminar un producto específico
+function eliminarDelCarrito(index) {
+    carrito.splice(index, 1);
+    actualizarCarritoUI();
+}
+
+// Vaciar todo el carrito
+function vaciarCarrito() {
+    carrito = [];
+    actualizarCarritoUI();
+}
+
+// Renderizar el carrito en pantalla y calcular total
+function actualizarCarritoUI() {
+    const listaCarrito = document.getElementById('listaCarrito');
+    const contadorCarrito = document.getElementById('contadorCarrito');
+    const totalCarrito = document.getElementById('totalCarrito');
+
+    listaCarrito.innerHTML = '';
+
+    let totalUnidades = 0;
+    let totalPrecio = 0;
+
+    if (carrito.length === 0) {
+        listaCarrito.innerHTML = '<p class="carrito-vacio">Tu carrito está vacío.</p>';
+    } else {
+        carrito.forEach((item, index) => {
+            totalUnidades += item.cantidad;
+            totalPrecio += item.precio * item.cantidad;
+
+            const divItem = document.createElement('div');
+            divItem.classList.add('item-carrito');
+            divItem.innerHTML = `
+                <img src="${item.imagen}" alt="${item.nombre}">
+                <div class="item-info">
+                    <h4>${item.nombre}</h4>
+                    <span>${item.precio} Bs. x ${item.cantidad} = ${item.precio * item.cantidad} Bs.</span>
+                </div>
+                <div class="item-controles">
+                    <button class="btn-cant" onclick="cambiarCantidad(${index}, -1)">-</button>
+                    <span>${item.cantidad}</span>
+                    <button class="btn-cant" onclick="cambiarCantidad(${index}, 1)">+</button>
+                    <button class="btn-eliminar-item" onclick="eliminarDelCarrito(${index})" title="Eliminar">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </button>
+                </div>
+            `;
+            listaCarrito.appendChild(divItem);
+        });
+    }
+
+    contadorCarrito.textContent = totalUnidades;
+    totalCarrito.textContent = `${totalPrecio} Bs.`;
+}
+
+// Enviar todo el pedido por WhatsApp
+function finalizarCompraCarrito() {
+    if (carrito.length === 0) {
+        mostrarNotificacion("⚠️ Agrega al menos un juego al carrito primero.");
+        return;
+    }
+
+    let mensaje = "Hola GameVault! 👋 Quisiera realizar el siguiente pedido:\n\n";
+    let totalGeneral = 0;
+
+    carrito.forEach(item => {
+        const subtotal = item.precio * item.cantidad;
+        totalGeneral += subtotal;
+        mensaje += `🎮 *${item.nombre}* (x${item.cantidad}) - ${subtotal} Bs.\n`;
+    });
+
+    mensaje += `\n💰 *Total a pagar: ${totalGeneral} Bs.*\n¿Cuáles son los métodos de pago disponibles?`;
+
     const url = `https://wa.me/${TELEFONO_WHATSAPP}?text=${encodeURIComponent(mensaje)}`;
     window.open(url, '_blank');
-    cerrarModal();
+}
+
+// Mostrar notificación flotante breve
+function mostrarNotificacion(texto) {
+    const toast = document.getElementById('toastNotificacion');
+    const toastTexto = document.getElementById('toastTexto');
+    toastTexto.textContent = texto;
+
+    toast.classList.add('mostrar');
+    setTimeout(() => {
+        toast.classList.remove('mostrar');
+    }, 2500);
 }
 
 // Realizar recarga con WhatsApp
@@ -86,25 +207,17 @@ function recargar() {
 
     if (!juego || !idJugador || !monto) {
         mensajeError.style.color = '#ff4d4d';
-        mensajeError.textContent = '⚠️ Por favor, completa todos los campos de recarga.';
+        mensajeError.textContent = ' Por favor, completa todos los campos de recarga.';
         return;
     }
 
     mensajeError.style.color = '#00f2fe';
-    mensajeError.textContent = '🚀 ¡Redirigiendo a WhatsApp para procesar tu recarga!';
+    mensajeError.textContent = ' ¡Redirigiendo a WhatsApp para procesar tu recarga!';
 
-    const mensajeWA = `Hola GameVault! ⚡ Solicitud de recarga:\n- *Juego:* ${juego}\n- *ID Jugador:* ${idJugador}\n- *Monto:* ${monto}`;
+    const mensajeWA = `Hola GameVault!  Solicitud de recarga:\n- *Juego:* ${juego}\n- *ID Jugador:* ${idJugador}\n- *Monto:* ${monto}`;
     const url = `https://wa.me/${TELEFONO_WHATSAPP}?text=${encodeURIComponent(mensajeWA)}`;
     
     setTimeout(() => {
         window.open(url, '_blank');
     }, 1000);
-}
-
-// Cerrar modal al hacer clic fuera
-window.onclick = function(event) {
-    const modal = document.getElementById('modalCompra');
-    if (event.target === modal) {
-        cerrarModal();
-    }
 }
