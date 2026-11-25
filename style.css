@@ -38,7 +38,7 @@ header {
 }
 
 .header-container {
-    max-width: 1300px;
+    max-width: 1350px;
     margin: 0 auto;
     display: flex;
     align-items: center;
@@ -75,7 +75,7 @@ header {
     border: 1px solid var(--border-color);
     border-radius: 20px;
     padding: 6px 15px;
-    width: 260px;
+    width: 220px;
     transition: all 0.3s ease;
 }
 
@@ -101,7 +101,7 @@ header {
 nav {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 10px;
     flex-wrap: wrap;
 }
 
@@ -109,11 +109,11 @@ nav a {
     color: var(--text-muted);
     text-decoration: none;
     font-weight: 600;
-    font-size: 14px;
+    font-size: 13.5px;
     display: flex;
     align-items: center;
     gap: 6px;
-    padding: 6px 10px;
+    padding: 6px 9px;
     border-radius: 6px;
     transition: all 0.3s ease;
 }
@@ -169,7 +169,6 @@ nav a i {
     overflow: hidden;
 }
 
-/* ESTILOS DEL BOTÓN DE AUDIO */
 .btn-audio-hero {
     position: absolute;
     top: 25px;
@@ -235,7 +234,6 @@ nav a i {
     width: 100%;
 }
 
-/* ESTILOS DEL LOGO CENTRAL REDUCIDO Y BRILLANTE */
 .logo-hero-container {
     margin-bottom: 15px;
 }
@@ -504,7 +502,6 @@ nav a i {
     color: #40a9ff;
 }
 
-/* VIDEO / TRAILER CONTAINER */
 .video-container {
     position: relative;
     width: 100%;
@@ -566,11 +563,184 @@ nav a i {
     transform: scale(1.04);
 }
 
+/* ==========================================
+   ESTILOS SECCIÓN TORNEOS (PREMIO GTA VI)
+========================================== */
+.seccion-torneos {
+    padding: 60px 5%;
+    max-width: 1250px;
+    margin: 0 auto;
+}
+
+.torneo-destacado {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    background: linear-gradient(145deg, #0d1624, #08101c);
+    border: 1px solid var(--primary);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 0 35px rgba(8, 124, 255, 0.25);
+}
+
+.torneo-img-box {
+    position: relative;
+    min-height: 360px;
+}
+
+.torneo-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.torneo-badge {
+    position: absolute;
+    top: 18px;
+    left: 18px;
+    background: linear-gradient(135deg, #ffb703, #fb8500);
+    color: #050b14;
+    font-weight: 900;
+    font-size: 12px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(251, 133, 0, 0.5);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.torneo-info {
+    padding: 35px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.torneo-etiquetas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.torneo-etiquetas span {
+    background: rgba(8, 124, 255, 0.15);
+    border: 1px solid var(--border-color);
+    color: #40a9ff;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 15px;
+}
+
+.torneo-info h3 {
+    font-size: 26px;
+    font-weight: 800;
+    margin-bottom: 12px;
+    line-height: 1.3;
+}
+
+.torneo-info h3 span {
+    color: var(--primary);
+    text-shadow: 0 0 15px var(--primary-glow);
+}
+
+.torneo-info > p {
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 22px;
+}
+
+.torneo-premios {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.premio-item {
+    background: #050b14;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.premio-item i {
+    font-size: 22px;
+}
+
+.premio-item.oro { border-color: #ffb703; }
+.premio-item.oro i { color: #ffb703; }
+.premio-item.plata i { color: #cbd5e1; }
+.premio-item.bronce i { color: #cd7f32; }
+
+.premio-item strong {
+    display: block;
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.premio-item span {
+    font-size: 13px;
+    font-weight: 700;
+    color: white;
+}
+
+.form-torneo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.form-torneo input,
+.form-torneo select {
+    width: 100%;
+    padding: 11px 14px;
+    background: #050b14;
+    color: white;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 13.5px;
+    outline: none;
+}
+
+.form-torneo input:focus,
+.form-torneo select:focus {
+    border-color: var(--primary);
+}
+
+.btn-inscribir-torneo {
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, #087cff, #0056b3);
+    color: white;
+    border: none;
+    padding: 13px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 4px 18px var(--primary-glow);
+    transition: all 0.3s ease;
+}
+
+.btn-inscribir-torneo:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(8, 124, 255, 0.85);
+}
+
 /* RECARGAS */
 .recargas {
     background: linear-gradient(to bottom, var(--bg-dark), #03070d);
     padding: 60px 20px;
-    margin-top: 40px;
+    margin-top: 20px;
 }
 
 .recargas-container {
@@ -597,7 +767,8 @@ nav a i {
     margin-bottom: 20px;
 }
 
-.formulario label {
+.formulario label,
+.opinion-form-card label {
     display: block;
     margin-bottom: 8px;
     font-size: 14px;
@@ -611,7 +782,10 @@ nav a i {
 }
 
 .formulario input,
-.formulario select {
+.formulario select,
+.opinion-form-card input,
+.opinion-form-card select,
+.opinion-form-card textarea {
     width: 100%;
     padding: 12px 15px;
     background: #050b14;
@@ -620,11 +794,15 @@ nav a i {
     border-radius: 8px;
     outline: none;
     font-size: 14px;
+    font-family: inherit;
     transition: all 0.3s ease;
 }
 
 .formulario input:focus,
-.formulario select:focus {
+.formulario select:focus,
+.opinion-form-card input:focus,
+.opinion-form-card select:focus,
+.opinion-form-card textarea:focus {
     border-color: var(--primary);
     box-shadow: 0 0 8px var(--primary-glow);
 }
@@ -658,6 +836,138 @@ nav a i {
     text-align: center;
     font-weight: 600;
     font-size: 14px;
+}
+
+/* ==========================================
+   ESTILOS SECCIÓN COMENTARIOS / OPINIONES
+========================================== */
+.seccion-opiniones {
+    padding: 65px 5%;
+    max-width: 1250px;
+    margin: 0 auto;
+}
+
+.opiniones-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 30px;
+    align-items: start;
+}
+
+.opinion-form-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+}
+
+.opinion-form-card h3 {
+    font-size: 19px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+}
+
+.opinion-form-card h3 i {
+    color: var(--primary);
+}
+
+.btn-publicar-opinion {
+    width: 100%;
+    background: linear-gradient(135deg, #087cff, #0056b3);
+    color: white;
+    border: none;
+    padding: 13px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 4px 15px var(--primary-glow);
+    transition: all 0.3s ease;
+}
+
+.btn-publicar-opinion:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(8, 124, 255, 0.8);
+}
+
+.opiniones-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-height: 520px;
+    overflow-y: auto;
+    padding-right: 6px;
+}
+
+.comentario-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-left: 4px solid var(--primary);
+    border-radius: 12px;
+    padding: 20px;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.comentario-card:hover {
+    transform: translateX(4px);
+    border-color: var(--primary);
+}
+
+.comentario-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.comentario-autor {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.avatar-usuario {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #087cff, #004494);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 15px;
+    color: white;
+}
+
+.comentario-autor strong {
+    display: block;
+    font-size: 15px;
+    color: white;
+}
+
+.comentario-autor small {
+    color: var(--text-muted);
+    font-size: 12px;
+}
+
+.comentario-estrellas {
+    font-size: 13px;
+}
+
+.comentario-texto {
+    color: #d1d9e6;
+    font-size: 14px;
+    line-height: 1.55;
 }
 
 /* EMPRESA */
@@ -1070,13 +1380,9 @@ footer {
 }
 
 .toast.mostrar {
-    visibility: hidden; /* handled via JS */
+    visibility: visible;
     opacity: 1;
     bottom: 35px;
-}
-
-.toast.mostrar {
-    visibility: visible;
 }
 
 .toast i {
@@ -1085,6 +1391,18 @@ footer {
 }
 
 /* RESPONSIVE */
+@media (max-width: 900px) {
+    .torneo-destacado {
+        grid-template-columns: 1fr;
+    }
+    .torneo-img-box {
+        min-height: 240px;
+    }
+    .opiniones-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 @media (max-width: 768px) {
     .header-container {
         flex-direction: column;
@@ -1095,7 +1413,7 @@ footer {
     }
     nav {
         justify-content: center;
-        gap: 10px;
+        gap: 8px;
     }
     .inicio h1 {
         font-size: 34px;
@@ -1105,6 +1423,10 @@ footer {
         height: 100px;
     }
     .juegos {
+        grid-template-columns: 1fr;
+    }
+    .torneo-premios,
+    .form-torneo {
         grid-template-columns: 1fr;
     }
     .btn-audio-hero {
