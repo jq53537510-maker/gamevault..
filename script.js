@@ -73,13 +73,11 @@ function toggleAudioVideo() {
    FUNCIONES DEL CARRITO DE COMPRAS
 ========================================== */
 
-// Abrir o cerrar el panel lateral del carrito
 function toggleCarrito() {
     document.getElementById('panelCarrito').classList.toggle('abierto');
     document.getElementById('carritoOverlay').classList.toggle('activo');
 }
 
-// Agregar un producto al carrito
 function agregarAlCarrito(nombre, precio, imagen) {
     const itemExistente = carrito.find(item => item.nombre === nombre);
 
@@ -98,7 +96,6 @@ function agregarAlCarrito(nombre, precio, imagen) {
     mostrarNotificacion(`"${nombre}" agregado al carrito`);
 }
 
-// Aumentar o disminuir cantidad
 function cambiarCantidad(index, cambio) {
     carrito[index].cantidad += cambio;
 
@@ -109,19 +106,16 @@ function cambiarCantidad(index, cambio) {
     actualizarCarritoUI();
 }
 
-// Eliminar un producto específico
 function eliminarDelCarrito(index) {
     carrito.splice(index, 1);
     actualizarCarritoUI();
 }
 
-// Vaciar todo el carrito
 function vaciarCarrito() {
     carrito = [];
     actualizarCarritoUI();
 }
 
-// Renderizar el carrito en pantalla y calcular total
 function actualizarCarritoUI() {
     const listaCarrito = document.getElementById('listaCarrito');
     const contadorCarrito = document.getElementById('contadorCarrito');
@@ -164,7 +158,6 @@ function actualizarCarritoUI() {
     totalCarrito.textContent = `${totalPrecio} Bs.`;
 }
 
-// Enviar todo el pedido por WhatsApp
 function finalizarCompraCarrito() {
     if (carrito.length === 0) {
         mostrarNotificacion("⚠️ Agrega al menos un juego al carrito primero.");
@@ -186,7 +179,6 @@ function finalizarCompraCarrito() {
     window.open(url, '_blank');
 }
 
-// Mostrar notificación flotante breve
 function mostrarNotificacion(texto) {
     const toast = document.getElementById('toastNotificacion');
     const toastTexto = document.getElementById('toastTexto');
@@ -207,17 +199,130 @@ function recargar() {
 
     if (!juego || !idJugador || !monto) {
         mensajeError.style.color = '#ff4d4d';
-        mensajeError.textContent = ' Por favor, completa todos los campos de recarga.';
+        mensajeError.textContent = 'Por favor, completa todos los campos de recarga.';
         return;
     }
 
     mensajeError.style.color = '#00f2fe';
-    mensajeError.textContent = ' ¡Redirigiendo a WhatsApp para procesar tu recarga!';
+    mensajeError.textContent = '¡Redirigiendo a WhatsApp para procesar tu recarga!';
 
-    const mensajeWA = `Hola GameVault!  Solicitud de recarga:\n- *Juego:* ${juego}\n- *ID Jugador:* ${idJugador}\n- *Monto:* ${monto}`;
+    const mensajeWA = `Hola GameVault! ⚡ Solicitud de recarga:\n- *Juego:* ${juego}\n- *ID Jugador:* ${idJugador}\n- *Monto:* ${monto}`;
     const url = `https://wa.me/${TELEFONO_WHATSAPP}?text=${encodeURIComponent(mensajeWA)}`;
     
     setTimeout(() => {
         window.open(url, '_blank');
     }, 1000);
 }
+
+/* ==========================================
+   INSCRIPCIÓN AL TORNEO POR GTA VI
+========================================== */
+function inscribirTorneo(event) {
+    event.preventDefault();
+
+    const nombre = document.getElementById('torneoNombre').value.trim();
+    const juego = document.getElementById('torneoJuego').value;
+    const plataforma = document.getElementById('torneoPlataforma').value;
+
+    const mensajeWA = `Hola GameVault! 🏆 Quiero inscribirme al *Torneo Copa Vice City (Premio: GTA VI)*:\n- *Jugador / Nick:* ${nombre}\n- *Disciplina:* ${juego}\n- *Plataforma:* ${plataforma}`;
+    const url = `https://wa.me/${TELEFONO_WHATSAPP}?text=${encodeURIComponent(mensajeWA)}`;
+
+    mostrarNotificacion("Redirigiendo a WhatsApp para confirmar tu cupo...");
+    setTimeout(() => {
+        window.open(url, '_blank');
+    }, 800);
+}
+
+/* ==========================================
+   SISTEMA DE COMENTARIOS Y OPINIONES
+========================================== */
+const comentariosIniciales = [
+    {
+        nombre: "Mateo_LPZ",
+        estrellas: 5,
+        fecha: "Hace 2 días",
+        texto: "Compré God of War Ragnarök y me entregaron la clave al instante por WhatsApp. 100% recomendados en La Paz."
+    },
+    {
+        nombre: "ValeriaGamer",
+        estrellas: 5,
+        fecha: "Hace 5 días",
+        texto: "Las recargas de Free Fire llegan en menos de 2 minutos. Ya me inscribí al torneo para ganarme el GTA VI 🔥"
+    },
+    {
+        nombre: "DiegoX_99",
+        estrellas: 4,
+        fecha: "Hace 1 semana",
+        texto: "Excelentes precios en comparación con otras tiendas digitales y muy buena atención al cliente."
+    }
+];
+
+let comentarios = JSON.parse(localStorage.getItem('gamevault_comentarios')) || comentariosIniciales;
+
+function renderizarComentarios() {
+    const contenedor = document.getElementById('listaComentarios');
+    if (!contenedor) return;
+
+    contenedor.innerHTML = '';
+
+    comentarios.forEach(item => {
+        const inicial = item.nombre.charAt(0).toUpperCase();
+        const estrellasHTML = '⭐'.repeat(item.estrellas);
+
+        const card = document.createElement('div');
+        card.className = 'comentario-card';
+        card.innerHTML = `
+            <div class="comentario-header">
+                <div class="comentario-autor">
+                    <div class="avatar-usuario">${inicial}</div>
+                    <div>
+                        <strong>${escapeHTML(item.nombre)}</strong>
+                        <small>${escapeHTML(item.fecha)}</small>
+                    </div>
+                </div>
+                <div class="comentario-estrellas">${estrellasHTML}</div>
+            </div>
+            <p class="comentario-texto">${escapeHTML(item.texto)}</p>
+        `;
+        contenedor.appendChild(card);
+    });
+}
+
+function agregarComentario(event) {
+    event.preventDefault();
+
+    const nombre = document.getElementById('nombreUsuario').value.trim();
+    const estrellas = parseInt(document.getElementById('calificacionUsuario').value);
+    const texto = document.getElementById('textoComentario').value.trim();
+
+    if (!nombre || !texto) return;
+
+    const nuevoComentario = {
+        nombre: nombre,
+        estrellas: estrellas,
+        fecha: "Recién publicado",
+        texto: texto
+    };
+
+    comentarios.unshift(nuevoComentario);
+    localStorage.setItem('gamevault_comentarios', JSON.stringify(comentarios));
+
+    renderizarComentarios();
+    document.getElementById('formComentario').reset();
+    mostrarNotificacion("¡Gracias! Tu opinión ha sido publicada.");
+}
+
+// Evitar inyección HTML en comentarios de usuarios
+function escapeHTML(str) {
+    return str.replace(/[&<>'"]/g, tag => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        "'": '&#39;',
+        '"': '&quot;'
+    }[tag]));
+}
+
+// Cargar comentarios al iniciar la página
+document.addEventListener('DOMContentLoaded', renderizarComentarios);
+
