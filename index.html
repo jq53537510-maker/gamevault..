@@ -26,7 +26,9 @@
             <nav>
                 <a href="#inicio"><i class="fa-solid fa-house"></i> Inicio</a>
                 <a href="#juegos"><i class="fa-solid fa-gamepad"></i> Juegos</a>
+                <a href="#torneos"><i class="fa-solid fa-trophy"></i> Torneos</a>
                 <a href="#recargas"><i class="fa-solid fa-bolt"></i> Recargas</a>
+                <a href="#opiniones"><i class="fa-solid fa-comments"></i> Opiniones</a>
                 <a href="#empresa"><i class="fa-solid fa-users"></i> Nosotros</a>
                 <a href="#contacto"><i class="fa-solid fa-headset"></i> Contacto</a>
                 
@@ -41,15 +43,13 @@
 
     <!-- PORTADA / HERO (CON VIDEO DE FONDO, LOGO Y BOTÓN DE AUDIO) -->
     <section id="inicio" class="inicio">
-        <!-- Botón para activar/desactivar audio del video -->
         <button id="btnAudio" class="btn-audio-hero" onclick="toggleAudioVideo()">
             <i id="iconoAudio" class="fa-solid fa-volume-xmark"></i> Activar Sonido
         </button>
 
         <div class="hero-video-background">
             <video id="videoHero" autoplay muted loop playsinline>
-                <!-- Reemplaza "tu-video.mp4" con el nombre o enlace de tu video -->
-                <source src="WhatsApp Video 2026-11-15 at 4.02.47 PM.mp4" type="video/mp4">
+                <source src="clip1.mp4" type="video/mp4">
                 Tu navegador no soporta videos HTML5.
             </video>
             <div class="hero-overlay"></div>
@@ -67,7 +67,7 @@
 
             <div class="hero-buttons">
                 <a href="#juegos" class="boton-hero primary"><i class="fa-solid fa-store"></i> EXPLORAR VIDEOJUEGOS</a>
-                <a href="#recargas" class="boton-hero secondary"><i class="fa-solid fa-bolt"></i> HACER RECARGA</a>
+                <a href="#torneos" class="boton-hero secondary"><i class="fa-solid fa-trophy"></i> TORNEO GTA VI</a>
             </div>
         </div>
     </section>
@@ -265,6 +265,77 @@
         </div>
     </section>
 
+    <!-- ==========================================
+         NUEVA SECCIÓN: TORNEOS GAMEVAULT (PREMIO GTA VI)
+    =========================================== -->
+    <section id="torneos" class="seccion-torneos">
+        <div class="section-header">
+            <h2 class="titulo"><i class="fa-solid fa-trophy"></i> Torneos Oficiales GameVault</h2>
+            <p class="subtitulo">Demuestra tu nivel competitivo y llévate los mejores premios digitales.</p>
+        </div>
+
+        <div class="torneo-destacado">
+            <div class="torneo-img-box">
+                <img src="img/gta6.jfif" alt="Gran Premio GTA VI">
+                <span class="torneo-badge"><i class="fa-solid fa-crown"></i> GRAN PREMIO</span>
+            </div>
+
+            <div class="torneo-info">
+                <div class="torneo-etiquetas">
+                    <span><i class="fa-solid fa-calendar-days"></i> Inscripciones Abiertas</span>
+                    <span><i class="fa-solid fa-users"></i> Cupos: 32 Jugadores</span>
+                    <span><i class="fa-brands fa-playstation"></i> <i class="fa-brands fa-xbox"></i> Multiplataforma</span>
+                </div>
+
+                <h3>Copa Vice City: ¡Gana una copia oficial de <span>Grand Theft Auto VI</span>!</h3>
+                <p>Participa en nuestro torneo clasificatorio de <strong>Call of Duty / Tekken 8 / Free Fire</strong>. El campeón absoluto se llevará una Key / Cuenta Oficial de <strong>Grand Theft Auto VI</strong> (valorado en 420 Bs.) totalmente gratis.</p>
+
+                <div class="torneo-premios">
+                    <div class="premio-item oro">
+                        <i class="fa-solid fa-medal"></i>
+                        <div>
+                            <strong>1er Lugar</strong>
+                            <span>Copia Oficial GTA VI</span>
+                        </div>
+                    </div>
+                    <div class="premio-item plata">
+                        <i class="fa-solid fa-medal"></i>
+                        <div>
+                            <strong>2do Lugar</strong>
+                            <span>Recarga de 100 Bs.</span>
+                        </div>
+                    </div>
+                    <div class="premio-item bronce">
+                        <i class="fa-solid fa-medal"></i>
+                        <div>
+                            <strong>3er Lugar</strong>
+                            <span>Recarga de 50 Bs.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="form-torneo" onsubmit="inscribirTorneo(event)">
+                    <input type="text" id="torneoNombre" placeholder="Tu Nombre o Nickname / Gamertag" required>
+                    <select id="torneoJuego" required>
+                        <option value="">-- Elige tu disciplina --</option>
+                        <option value="Tekken 8 (1v1)">Tekken 8 (1v1)</option>
+                        <option value="Call of Duty (1v1)">Call of Duty (1v1)</option>
+                        <option value="Free Fire (Sala Clasificatoria)">Free Fire (Sala Clasificatoria)</option>
+                    </select>
+                    <select id="torneoPlataforma" required>
+                        <option value="">-- Plataforma --</option>
+                        <option value="PlayStation 5">PlayStation 5</option>
+                        <option value="Xbox Series X/S">Xbox Series X/S</option>
+                        <option value="PC / Mobile">PC / Mobile</option>
+                    </select>
+                    <button type="submit" class="btn-inscribir-torneo">
+                        <i class="fa-brands fa-whatsapp"></i> Inscribirme al Torneo por GTA VI
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
     <!-- RECARGAS -->
     <section id="recargas" class="recargas">
         <div class="recargas-container">
@@ -308,6 +379,54 @@
         </div>
     </section>
 
+    <!-- ==========================================
+         NUEVA SECCIÓN: COMENTARIOS Y OPINIONES
+    =========================================== -->
+    <section id="opiniones" class="seccion-opiniones">
+        <div class="section-header">
+            <h2 class="titulo"><i class="fa-solid fa-comments"></i> Opiniones de la Comunidad</h2>
+            <p class="subtitulo">Comparte tu experiencia comprando juegos o recargando en GameVault.</p>
+        </div>
+
+        <div class="opiniones-grid">
+            <!-- FORMULARIO PARA DEJAR OPINIÓN -->
+            <div class="opinion-form-card">
+                <h3><i class="fa-solid fa-pen-to-square"></i> Deja tu reseña</h3>
+                <form id="formComentario" onsubmit="agregarComentario(event)">
+                    <div class="form-group">
+                        <label for="nombreUsuario">Tu Nombre o Gamertag</label>
+                        <input type="text" id="nombreUsuario" placeholder="Ej. CarlosGamer_BO" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="calificacionUsuario">Calificación</label>
+                        <select id="calificacionUsuario">
+                            <option value="5">⭐⭐⭐⭐⭐ (5/5 - Excelente)</option>
+                            <option value="4">⭐⭐⭐⭐ (4/5 - Muy bueno)</option>
+                            <option value="3">⭐⭐⭐ (3/5 - Bueno)</option>
+                            <option value="2">⭐⭐ (2/5 - Regular)</option>
+                            <option value="1">⭐ (1/5 - Malo)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="textoComentario">Tu opinión</label>
+                        <textarea id="textoComentario" rows="4" placeholder="Cuéntanos qué juego compraste o qué tal fue tu recarga..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-publicar-opinion">
+                        <i class="fa-solid fa-paper-plane"></i> Publicar Opinión
+                    </button>
+                </form>
+            </div>
+
+            <!-- LISTA DE COMENTARIOS PUBLICADOS -->
+            <div class="opiniones-lista" id="listaComentarios">
+                <!-- Se llenará dinámicamente con JS y comentarios iniciales -->
+            </div>
+        </div>
+    </section>
+
     <!-- EMPRESA -->
     <section id="empresa" class="empresa">
         <h2 class="titulo"><i class="fa-solid fa-shield-halved"></i> ¿Por qué elegir GameVault?</h2>
@@ -345,10 +464,10 @@
             <div class="redes-sociales">
                 <h3>Síguenos en nuestras redes</h3>
                 <div class="social-links">
-                    <a href="https://www.tiktok.com/@gamevault270?_r=1&_t=ZS-9ApnDAyouh7" target="_blank" class="social-btn tiktok" title="TikTok">
+                    <a href="https://www.tiktok.com/" target="_blank" class="social-btn tiktok" title="TikTok">
                         <i class="fa-brands fa-tiktok"></i>
                     </a>
-                    <a href="https://www.facebook.com/share/14sby1Mumxz/" target="_blank" class="social-btn facebook" title="Facebook">
+                    <a href="https://www.facebook.com/" target="_blank" class="social-btn facebook" title="Facebook">
                         <i class="fa-brands fa-facebook-f"></i>
                     </a>
                     <a href="https://www.instagram.com/" target="_blank" class="social-btn instagram" title="Instagram">
@@ -357,7 +476,7 @@
                     <a href="https://discord.com/" target="_blank" class="social-btn discord" title="Discord">
                         <i class="fa-brands fa-discord"></i>
                     </a>
-                    <a href="https://youtube.com/@gamevault-i7r?si=ZAATXs9zNksj_BsO" target="_blank" class="social-btn youtube" title="YouTube">
+                    <a href="https://www.youtube.com/" target="_blank" class="social-btn youtube" title="YouTube">
                         <i class="fa-brands fa-youtube"></i>
                     </a>
                 </div>
